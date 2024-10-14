@@ -1,6 +1,6 @@
 namespace DND.Characters.Actions;
 
-public enum ActionType
+public enum ActionTypes
 {
     Attack, 
     Move, 

@@ -1,25 +1,43 @@
+using DND.Render;
+
 namespace DND.Characters.Enemies;
 
 public class Enemy : Character
 {
-    private EnemyTypes _enemyType;
+    public static List<Enemy> EnemiesList = [];
 
-    public Enemy(int hp, int dmg, EnemyTypes enemyType) : base(hp, dmg)
+    public Enemy(int hp, int dmg, Room currentRoom, CharacterTypes characterType, int movementSpeed) : base(hp, dmg, currentRoom, characterType,movementSpeed) { }
+    public virtual void Move(){}
+    public virtual void Attack(Player player){}
+
+    public void EnemyTurn(Player player)
     {
-        _enemyType = enemyType;
+        Move();
+        if (Player.PlayedTurns % 3 == 0)
+        {
+            Attack(player);
+        }
     }
     
-    public static class Factory
+    public static class EnemyFactory
     {
-        public static Enemy CreateOgre()
-        {
-            return new Enemy( 100, 10, EnemyTypes.Ogre);
-        }
-
+        //prepsat new Room() na nejakou tu roomku zejo  
+        
         public static Enemy CreateGoblin()
         {
-            return new Enemy(50, 5, EnemyTypes.Goblin);
+            return new Goblin(50, 5, Room.Rooms[1], CharacterTypes.Goblin,2);
         }
+        public static Enemy CreateOgre()
+        {
+            return new Enemy(100, 10, Room.Rooms[2],CharacterTypes.Ogre,1);
+        }
+        public static Enemy CreateDragon()
+        {
+            return new Enemy(200, 20, Room.Rooms[3], CharacterTypes.Goblin,0);
+        }
+        
+        
+        
     }
     
 }

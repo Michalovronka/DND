@@ -18,8 +18,13 @@ public static class GameLoopMenu
 {
     public static void GameMenu(Player player) 
     {
+        
+        Enemy enemy = player.CurrentRoom.GetEnemy(player);
+        
         Console.Clear();
         player.CurrentRoom.RenderRoom();
+        
+        
         
         int actionsLength = Enum.GetNames(typeof(ActionTypes)).Length;
 
@@ -53,7 +58,8 @@ public static class GameLoopMenu
                     break;
             }
 
-            Enemy enemy = player.CurrentRoom.GetEnemy(player);
+            enemy.CurrentRoom.UpdateEnemyAttack(enemy);
+            
             if(enemy.Position[0] < 0) return;
             enemy.EnemyTurn(player);
 

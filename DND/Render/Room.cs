@@ -30,7 +30,6 @@ public class Room
 
     public void RenderRoom() 
     {
-        UpdateEnemyAttack();
         for (int y = 0; y < RoomHeight; y++)
         {
             for (int x = 0; x < RoomWidth; x++)
@@ -73,9 +72,23 @@ public class Room
         ghost.Position[0] = -999;
         return ghost;
     }
-    public void UpdateEnemyAttack()
+    public void UpdateEnemyAttack(Enemy enemy)
     {
-        
+        switch (enemy.CharacterType)
+        {
+            case CharacterTypes.Goblin:
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] + 1, enemy.Position[1]] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] + 1, enemy.Position[1]] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] - 1, enemy.Position[1]] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] - 1, enemy.Position[1]] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] - 1] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] - 1] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] + 1] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] + 1] = 0;
+                break;
+            case CharacterTypes.Ogre:
+                break;
+            case CharacterTypes.Dragon:
+                break;
+            default:
+                return;
+        }
     }
     
     public void UpdateDoors()

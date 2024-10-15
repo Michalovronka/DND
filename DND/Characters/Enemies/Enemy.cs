@@ -25,7 +25,7 @@ public class Enemy : Character
         
         public static Enemy CreateGoblin()
         {
-            return new Goblin(50, 5, Room.Rooms[1], CharacterTypes.Goblin,2);
+            return new Goblin(50, 5, Room.Rooms[1], CharacterTypes.Goblin,1);
         }
         public static Enemy CreateOgre()
         {

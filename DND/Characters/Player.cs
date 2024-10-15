@@ -39,7 +39,7 @@ public class Player : Character
                     CurrentRoom = Room.Rooms[++_currentRoomIndex];
                     Position[0] = Room.RoomHeight-2;
                     Position[1] = Room.RoomWidth/2;
-                    //CurrentRoom.UpdateDoors();
+                    CurrentRoom.UpdateDoors();
                     CurrentRoom.UpdatePosition(0, 0, this);
                 }
                 break;
@@ -75,7 +75,7 @@ public class Player : Character
     public void Attack()
     {
         Enemy enemy = CurrentRoom.GetEnemy(this);
-        if (enemy.Position[0] > 0 
+        if (enemy.Hp > 0 && enemy.Position[0] > 0 
             && (CurrentRoom.RoomInfo[Position[0] + 1, Position[1]] == enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1]]
             || CurrentRoom.RoomInfo[Position[0] - 1, Position[1]] == enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1]]
             || CurrentRoom.RoomInfo[Position[0], Position[1] - 1]  == enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1]]

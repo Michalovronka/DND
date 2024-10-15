@@ -36,7 +36,7 @@ class Program
         }
 
         Console.Clear();
-        if (player.Hp > 0)
+        if (player.Hp < 0)
         {
             Console.WriteLine("You DIED");
         }
@@ -44,6 +44,6 @@ class Program
         {
             Console.WriteLine("You won");
         }
-        Console.Read();
+        Console.ReadKey();
     }
 }

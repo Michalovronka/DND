@@ -34,10 +34,10 @@ public static class GameLoopMenu
             Console.WriteLine($"{n + 1}. {Enum.GetName(typeof(ActionTypes), n)}");
         }
 
-        
-
         bool isNumber = int.TryParse(Console.ReadKey().KeyChar.ToString(), out int decisionNumber);
 
+        Console.WriteLine();
+        
         if (isNumber && decisionNumber <= actionsLength && decisionNumber > 0)
         {
             ActionTypes actionTypes = (ActionTypes)(decisionNumber - 1);
@@ -45,16 +45,16 @@ public static class GameLoopMenu
             switch (actionTypes)
             {
                 case ActionTypes.Move:
-                    Console.WriteLine("Move");
                     player.Move();
                     break;
                 case ActionTypes.Attack:
-                    Console.WriteLine("Attack");
                     player.Attack();
                     break;
                 case ActionTypes.Heal:
-                    Console.WriteLine("Heal");
                     player.Heal();
+                    break;
+                case ActionTypes.Dictionary:
+                    ShowDictionary();
                     break;
                 default:
                     Console.WriteLine("Good Job wasting a turn. :)");
@@ -73,5 +73,20 @@ public static class GameLoopMenu
         }
         //string good - $"{text, textLength}" 
         
+    }
+
+    public static void ShowDictionary()
+    {
+        Console.WriteLine();
+        Console.WriteLine("Dictionary Of this Epic World");
+        Console.WriteLine();
+        Console.WriteLine("P - Player");
+        Console.WriteLine("G - Goblin");
+        Console.WriteLine("O - Ogre");
+        Console.WriteLine("D - Dragon");
+        Console.WriteLine("* - attack");
+        Console.WriteLine("# - fire");
+        Console.WriteLine();
+        Console.ReadKey();
     }
 }

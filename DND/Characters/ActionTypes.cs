@@ -4,5 +4,6 @@ public enum ActionTypes
 {
     Attack, 
     Move, 
-    Heal
+    Heal,
+    Dictionary
 }

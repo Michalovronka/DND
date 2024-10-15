@@ -18,26 +18,6 @@ public class Dragon : Enemy
         
         int playerInfo = player.CurrentRoom.RoomInfo[player.Position[0], player.Position[1]];
         
-        if (CurrentRoom.RoomInfo[Position[0] - 1, Position[1]] == 0 ) CurrentRoom.RoomInfo[Position[0] + 1, Position[1]] = 8;
-        if (CurrentRoom.RoomInfo[Position[0] - 1, Position[1]+1] == 0) CurrentRoom.RoomInfo[Position[0] - 1, Position[1]] = 8;
-        if (CurrentRoom.RoomInfo[Position[0] - 1, Position[1]+2] == 0) CurrentRoom.RoomInfo[Position[0], Position[1] - 1] = 8;
-        if (CurrentRoom.RoomInfo[Position[0] - 1, Position[1]-1] == 0) CurrentRoom.RoomInfo[Position[0], Position[1] + 1] = 8;
-        if (CurrentRoom.RoomInfo[Position[0] - 1, Position[1]-2] == 0) CurrentRoom.RoomInfo[Position[0], Position[1] + 1] = 8;
-        
-        if (CurrentRoom.RoomInfo[Position[0] - 1, Position[1]] == 3 ) player.Hp -= Dmg;
-        if (CurrentRoom.RoomInfo[Position[0] - 1, Position[1] + 1] == 3) player.Hp -= Dmg;
-        if (CurrentRoom.RoomInfo[Position[0] - 1, Position[1] + 2] == 3) player.Hp -= Dmg;
-        if (CurrentRoom.RoomInfo[Position[0] - 1, Position[1] - 1] == 3) player.Hp -= Dmg;
-        if (CurrentRoom.RoomInfo[Position[0] - 1, Position[1] - 2] == 3) player.Hp -= Dmg;
-        
-        if (CurrentRoom.RoomInfo[Position[0] - 1, Position[1]] == playerInfo
-            || CurrentRoom.RoomInfo[Position[0] - 1, Position[1]+1] == playerInfo
-            || CurrentRoom.RoomInfo[Position[0]- 1, Position[1] +2]  == playerInfo
-            || CurrentRoom.RoomInfo[Position[0]- 1, Position[1] -1]  == playerInfo 
-            || CurrentRoom.RoomInfo[Position[0]- 1, Position[1] -2]  == playerInfo) 
-            player.Hp -= Dmg;
-        
-        if(dragonCharge % 2 == 1) return;
         
         Random rnd = new Random();
         if (Hp > MaxHp / 2)
@@ -55,8 +35,8 @@ public class Dragon : Enemy
                 if (CurrentRoom.RoomInfo[y, x] != 1 && CurrentRoom.RoomInfo[y, x] !=2 && ((y < 5 || y > Room.RoomHeight - 5) || (x < 5 || x > Room.RoomWidth - 5))) 
                     CurrentRoom.RoomInfo[y, x] = 8;
             }
-
-            FireAttack(10, 15);
+            
+            FireAttack(50, 70);
         }
 
         void FireAttack(int minNum, int maxNum)

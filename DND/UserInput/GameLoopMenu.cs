@@ -23,8 +23,9 @@ public static class GameLoopMenu
         
         Console.Clear();
         player.CurrentRoom.RenderRoom();
-        
-        
+
+        Console.Write("Player HP: "); RenderHp.RenderCharacterHp(player);
+        Console.Write("Enemy HP: "); RenderHp.RenderCharacterHp(enemy);
         
         int actionsLength = Enum.GetNames(typeof(ActionTypes)).Length;
 
@@ -32,6 +33,8 @@ public static class GameLoopMenu
         {
             Console.WriteLine($"{n + 1}. {Enum.GetName(typeof(ActionTypes), n)}");
         }
+
+        
 
         bool isNumber = int.TryParse(Console.ReadKey().KeyChar.ToString(), out int decisionNumber);
 
@@ -51,7 +54,7 @@ public static class GameLoopMenu
                     break;
                 case ActionTypes.Heal:
                     Console.WriteLine("Heal");
-                    //Heal();
+                    player.Heal();
                     break;
                 default:
                     Console.WriteLine("Good Job wasting a turn. :)");
@@ -61,13 +64,12 @@ public static class GameLoopMenu
             enemy.CurrentRoom.UpdateEnemyAttack(enemy);
             
             if(enemy.Position[0] < 0) return;
-            enemy.EnemyTurn(player);
-
-        }
-        
-        else
-        {
-            Console.WriteLine("Not a valid Number");
+            if(enemy.IsDead) return;
+            
+            if (enemy.IsEnemyAlive(player))
+            {
+                enemy.EnemyTurn(player);
+            }
         }
         //string good - $"{text, textLength}" 
         

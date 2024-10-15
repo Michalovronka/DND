@@ -13,14 +13,15 @@ public class Room
     public readonly int [,] RoomInfo = new int[RoomHeight,RoomWidth];
     private static readonly Dictionary<int,string> RenderSymbols = new Dictionary<int, string>
     {
-        { 0, "\u0020 \u0020" },
-        { 1, "---" },
-        { 2, "| |" },
-        { 3, " P " },
-        { 4, " G " },
-        { 5, " O " },
-        { 6, " D " },
-        { 7, " * " }
+        { 0, "\u0020 \u0020" }, //empty space
+        { 1, "---" }, //verical border
+        { 2, "| |" }, //side border
+        { 3, " P " }, //player
+        { 4, " G " }, //goblin
+        { 5, " O " }, //ogre
+        { 6, " D " }, //dragon
+        { 7, " * " }, //goblin, ogre attack
+        { 8, " # " }, // dragon attack
     };
 
     public Room()
@@ -83,6 +84,23 @@ public class Room
                 if (enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] + 1] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] + 1] = 0;
                 break;
             case CharacterTypes.Ogre:
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] + 1, enemy.Position[1]] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] + 1, enemy.Position[1]] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] - 1, enemy.Position[1]] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] - 1, enemy.Position[1]] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] + 2, enemy.Position[1]] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] + 2, enemy.Position[1]] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] + 2, enemy.Position[1]+1] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] + 2, enemy.Position[1]+1] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] + 2, enemy.Position[1]-1] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] + 2, enemy.Position[1]-1] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] - 2, enemy.Position[1]] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] - 2, enemy.Position[1]] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] - 2, enemy.Position[1]+1] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] - 2, enemy.Position[1]+1] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] - 2, enemy.Position[1]-1] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] - 2, enemy.Position[1]-1] = 0;
+                
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] - 1] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] - 1] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] + 1] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] + 1] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] + 2] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] + 2] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] +1, enemy.Position[1] + 2] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] +1, enemy.Position[1] + 2] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] -1, enemy.Position[1] + 2] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] -1, enemy.Position[1] + 2] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] - 2] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0], enemy.Position[1] - 2] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] +1, enemy.Position[1] - 2] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] +1, enemy.Position[1] - 2] = 0;
+                if (enemy.CurrentRoom.RoomInfo[enemy.Position[0] -1, enemy.Position[1] - 2] == 7) enemy.CurrentRoom.RoomInfo[enemy.Position[0] -1, enemy.Position[1] - 2] = 0;
                 break;
             case CharacterTypes.Dragon:
                 break;
